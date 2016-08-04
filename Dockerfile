@@ -2,7 +2,7 @@ FROM pipetop/container-storage:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y --force-yes supervisor default-jre-headless mysql-server redis-server nodejs npm nodejs-legacy
+RUN apt-get update && apt-get install -y --force-yes default-jre-headless mysql-server redis-server nodejs npm nodejs-legacy
 
 RUN curl -L -o /tmp/elasticsearch.tar.gz https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.3.4/elasticsearch-2.3.4.tar.gz
 RUN mkdir -p /opt/elasticsearch
@@ -22,9 +22,11 @@ ENV MYSQL_HOST=localhost
 ADD vizceral /opt/vizceral
 RUN cd /opt/vizceral && npm install
 
-ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+RUN pip install supervisor
+
+ADD supervisord.conf /etc/supervisor/supervisord.conf
 
 EXPOSE 9200
 EXPOSE 80
 
-CMD /opt/mysql/init_mysql_server.sh && /virtualenv/bin/python /app/manage.py migrate && service redis-server start && service supervisor start
+CMD /opt/mysql/init_mysql_server.sh && /virtualenv/bin/python /app/manage.py migrate && service redis-server start && supervisord
