@@ -45,10 +45,10 @@ module.exports = {
       inject: true
     })
   ],
-  proxy: {
-    '/frontend/*': {
-      target: 'http://locahost:8878',
-      secure: false
-    }
+  devServer: {
+    proxy: [{
+      path: '/frontend/*',
+      target: 'http://localhost:8878'
+    }]
   }
 };
