@@ -98,7 +98,7 @@ class TrafficFlow extends React.Component {
   }
 
   beginSampleData () {
-    request.get('http://52.208.169.142:8878/frontend/vizceral')
+    request.get('frontend/vizceral')
       .set('Accept', 'application/json')
       .end((err, res) => {
         if (res && res.status === 200) {

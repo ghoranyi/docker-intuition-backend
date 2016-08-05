@@ -44,5 +44,11 @@ module.exports = {
       favicon: './src/favicon.ico',
       inject: true
     })
-  ]
+  ],
+  proxy: {
+    '/frontend/*': {
+      target: 'http://locahost:8878',
+      secure: false
+    }
+  }
 };
