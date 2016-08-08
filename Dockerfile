@@ -1,4 +1,4 @@
-FROM pipetop/container-storage:latest
+FROM ghoranyi/container-storage:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
 
