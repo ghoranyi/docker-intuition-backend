@@ -19,7 +19,6 @@ ENV CELERY_RESULTS_REDIS_URL=localhost
 ENV ELASTICSEARCH_URL=http://localhost:9200
 ENV MYSQL_HOST=localhost
 
-RUN ln -s /usr/bin/python2.7.distrib /usr/bin/python
 RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
 RUN apt-get install --force-yes -y nodejs
 
